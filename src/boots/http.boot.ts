@@ -34,6 +34,7 @@ export default defineService(async (shutdown) => {
 
   const close = await http.listen()
   shutdown(close)
+  console.log(`http://127.0.0.1:${http.port}`)
 
   return http
 })

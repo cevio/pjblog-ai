@@ -1,6 +1,7 @@
 import { Middleware } from 'koa';
 import { HttpException } from '../lib/http-error';
 export const CatchErrorMiddleware: Middleware = async (ctx, next) => {
+  if (!ctx.url.startsWith('/-')) return await next();
   try {
     await next()
     ctx.body = {

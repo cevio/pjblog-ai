@@ -1,35 +1,44 @@
 {
   "pages": {
     "/_not-found/page": [
-      "static/chunks/webpack-078f6dfb37dff419.js",
+      "static/chunks/webpack-4231140efe97e167.js",
       "static/chunks/6ee9f5d1-21ccf1713a250a03.js",
       "static/chunks/977-2cccd5a7b845b42f.js",
       "static/chunks/main-app-1b11f83f36440c84.js",
       "static/chunks/app/_not-found/page-0b45ba0b018f4e9e.js"
     ],
     "/not-found": [
-      "static/chunks/webpack-078f6dfb37dff419.js",
+      "static/chunks/webpack-4231140efe97e167.js",
       "static/chunks/6ee9f5d1-21ccf1713a250a03.js",
       "static/chunks/977-2cccd5a7b845b42f.js",
       "static/chunks/main-app-1b11f83f36440c84.js",
       "static/chunks/app/not-found-0b45ba0b018f4e9e.js"
     ],
     "/layout": [
-      "static/chunks/webpack-078f6dfb37dff419.js",
+      "static/chunks/webpack-4231140efe97e167.js",
       "static/chunks/6ee9f5d1-21ccf1713a250a03.js",
       "static/chunks/977-2cccd5a7b845b42f.js",
       "static/chunks/main-app-1b11f83f36440c84.js",
       "static/chunks/app/layout-0b45ba0b018f4e9e.js"
     ],
     "/error": [
-      "static/chunks/webpack-078f6dfb37dff419.js",
+      "static/chunks/webpack-4231140efe97e167.js",
       "static/chunks/6ee9f5d1-21ccf1713a250a03.js",
       "static/chunks/977-2cccd5a7b845b42f.js",
       "static/chunks/main-app-1b11f83f36440c84.js",
       "static/chunks/app/error-135890e7fd55aada.js"
     ],
+    "/login/page": [
+      "static/chunks/webpack-4231140efe97e167.js",
+      "static/chunks/6ee9f5d1-21ccf1713a250a03.js",
+      "static/chunks/977-2cccd5a7b845b42f.js",
+      "static/chunks/main-app-1b11f83f36440c84.js",
+      "static/css/70708e1863966ef4.css",
+      "static/chunks/669-c090b1b16dda34e8.js",
+      "static/chunks/app/login/page-9e0a78ee337c0b47.js"
+    ],
     "/page": [
-      "static/chunks/webpack-078f6dfb37dff419.js",
+      "static/chunks/webpack-4231140efe97e167.js",
       "static/chunks/6ee9f5d1-21ccf1713a250a03.js",
       "static/chunks/977-2cccd5a7b845b42f.js",
       "static/chunks/main-app-1b11f83f36440c84.js",

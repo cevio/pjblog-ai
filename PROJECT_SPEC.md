@@ -14,6 +14,7 @@
 3. 前端实现必须严格遵守 `@.claude/skills` 中以下规范：
    - `frontend-design`
    - `vercel-react-best-practices`
+   - `web-design-guidelines`
 4. 启动入口约束：**仅** `http.boot.ts` 自启动。
 5. 其他能力统一放在 `services` 中，通过容器按需加载，不新增其他 boot 自启动文件。
 
@@ -111,6 +112,14 @@ HTTP_PORT=3000
 
 1. 编辑器采用 Markdown。
 2. 前端采用 React RSC 模式，以提升 SEO 表现。
+3. 登录页为 Next.js 页面（移动端优先适配），视觉风格参考 `openclaw.ai` 的暗色科技感元素（高对比、渐变光效、玻璃拟态层次）。
+4. 登录交互仅支持邮箱验证码：
+   - 第一步输入邮箱并触发 `POST /-/auth/captcha` 获取验证码。
+   - 第二步输入验证码并触发 `POST /-/auth/login` 完成登录。
+5. `ticket` 必须隐藏管理：
+   - `captcha` 接口返回 `ticket` 后，前端在内存状态中保存，不向用户展示输入框。
+   - 登录请求时自动携带 `{ email, code, ticket }`。
+6. 登录页需支持手机端（320px+）布局与交互可用性。
 
 ## 9. 可扩展系统
 

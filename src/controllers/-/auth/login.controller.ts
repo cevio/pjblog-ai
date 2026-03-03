@@ -83,7 +83,6 @@ export default defineController('POST', [RequestBodyMiddleware], async (ctx) => 
     throw new HttpException(400, '验证码不正确');
   }
 
-  const currentTime = new Date();
   const ds = await loadService(TypeormService);
   const User = ds.manager.getRepository(UserEntity);
   let user = await User.findOneBy({ email });
@@ -91,10 +90,8 @@ export default defineController('POST', [RequestBodyMiddleware], async (ctx) => 
   if (!user) {
     user = User.create();
     user.email = email;
-    user.created_time = currentTime;
-    user.updated_time = currentTime;
   } else {
-    user.updated_time = currentTime;
+    user.updated_time = new Date();
   }
 
   await User.save(user);

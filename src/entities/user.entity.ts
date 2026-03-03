@@ -70,15 +70,15 @@ export class UserEntity {
   })
   public profile?: string;
 
-  @CreateDateColumn({
+  @Column({
     type: 'timestamp',
     comment: '创建时间',
     default: () => 'CURRENT_TIMESTAMP'
   })
-  @Index('idx_updated_time')
+  @Index('idx_created_time')
   public created_time!: Date;
 
-  @UpdateDateColumn({
+  @Column({
     type: 'timestamp',
     comment: '更新时间',
     default: () => 'CURRENT_TIMESTAMP'

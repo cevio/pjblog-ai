@@ -87,5 +87,5 @@ export default defineController('POST', [
   // 保存到 Redis
   await redis.setex(ticket, 60 * 5, JSON.stringify({ email, action, code }));
 
-  return ticket;
+  return md5;
 })

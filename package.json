@@ -5,20 +5,26 @@
   "type": "module",
   "scripts": {
     "dev": "hile start --dev --env-file .env",
-    "start": "hile start --env-file .env"
+    "build": "pnpm next:build && tsc -b && fix-esm-import-path --preserve-import-type ./dist",
+    "start": "hile start --env-file .env",
+    "start:prod": "NODE_ENV=production hile start --env-file .env",
+    "next:dev": "next dev",
+    "next:build": "next build",
+    "next:start": "next start"
   },
   "dependencies": {
-    "@hile/cli": "^1.0.17",
-    "@hile/core": "^1.0.19",
-    "@hile/http": "^1.0.22",
-    "@hile/ioredis": "^1.0.11",
-    "@hile/typeorm": "^1.0.11",
+    "@hile/cli": "^1.0.18",
+    "@hile/core": "^1.0.20",
+    "@hile/http": "^1.0.23",
+    "@hile/ioredis": "^1.0.12",
+    "@hile/typeorm": "^1.0.12",
     "antd": "^6.3.1",
     "dotenv": "^17.3.1",
     "ioredis": "^5.10.0",
     "koa": "^3.1.2",
     "koa-body": "^7.0.1",
     "koa-ratelimit": "^6.0.0",
+    "next": "^15.2.4",
     "nodemailer": "^8.0.1",
     "randomstring": "^1.3.1",
     "react": "^19.2.4",
@@ -34,6 +40,7 @@
     "@types/react-dom": "^19.2.3",
     "mysql2": "^3.18.2",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "fix-esm-import-path": "^1.10.3"
   }
 }

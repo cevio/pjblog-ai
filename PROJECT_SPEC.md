@@ -124,7 +124,31 @@ HTTP_PORT=3000
 3. 默认禁用 `any`，但 `try/catch` 场景中的 `error: any` 允许保留。
 4. 凡是 `PUT` / `POST` / `TRACE` 路由，必须加上中间件 `RequestBodyMiddleware`。
 
-## 11. 里程碑（执行顺序）
+## 11. 构建与运行规范
+
+当前项目同时包含：
+
+- hile 服务端（`src/`）
+- Next 页面（`/app`）
+
+脚本约定：
+
+- 开发：`pnpm dev`
+- 构建：`pnpm build`（顺序执行 `next build` + `tsc -b`）
+- 生产启动：`pnpm start:prod`
+
+构建产物说明：
+
+- Next 构建产物：`.next/`
+- TypeScript 构建产物：`dist/`
+
+生产运行方式说明：
+
+1. 必须先执行 `pnpm build` 生成 `.next` 和 `dist`。
+2. 运行时通过 `hile start` 启动容器（由 `start:prod` 封装）。
+3. 不直接手动执行 `node dist/...` 启动主服务。
+
+## 12. 里程碑（执行顺序）
 
 1. 搭建 `http.boot.ts` 启动入口与路由加载。
 2. 落地 TypeORM 数据源服务与实体加载。

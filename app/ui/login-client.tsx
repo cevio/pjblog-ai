@@ -179,7 +179,7 @@ export default function LoginClient() {
       </Form>
 
       <div className={styles.alerts}>
-        {tip ? <Alert showIcon type="info" description={tip} /> : null}
+        {tip ? <Alert showIcon type="info" description={tip} className={styles.tipAlert} /> : null}
         {error ? <Alert showIcon type="error" description={error} className={tip ? styles.errorWithTip : undefined} /> : null}
       </div>
 

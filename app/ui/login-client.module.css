@@ -46,6 +46,25 @@
   margin-top: 14px;
 }
 
+.tipAlert {
+  font-size: 12px;
+}
+
+.tipAlert:global(.ant-alert) {
+  padding: 8px 10px !important;
+}
+
+.tipAlert :global(.ant-alert-icon) {
+  font-size: 14px;
+  margin-inline-end: 6px;
+}
+
+.tipAlert :global(.ant-alert-description) {
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 0;
+}
+
 .errorWithTip {
   margin-top: 10px;
 }
@@ -55,4 +74,5 @@
   margin-bottom: 0;
   color: #64748b;
   font-size: 12px;
+  text-align: center;
 }

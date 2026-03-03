@@ -61,7 +61,10 @@
 @media (max-width: 480px) {
   .loginCard {
     padding: 22px 16px 16px;
-    border-radius: 14px;
+    border-radius: 0px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   .loginHeader h1 {

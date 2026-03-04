@@ -12,13 +12,8 @@ export const nextAppService = defineService(async () => {
   const app = next({
     dev: process.env.NODE_ENV !== 'production',
     dir: process.cwd(),
-  })
+  });
 
-  await app.prepare()
-
-  const handle = app.getRequestHandler()
-
-  return {
-    handle,
-  }
+  await app.prepare();
+  return app.getRequestHandler();
 })

@@ -6,6 +6,7 @@ import { CatchErrorMiddleware } from '../middlewares/error-catch.middle'
 import { ResponseTimeMiddleware } from '../middlewares/response-time.middle'
 import { parseEnvNumber, parseEnvKeys } from '../lib/env'
 import { nextAppService } from '../services/next-app.service'
+import { createNextStaticMiddleware } from '../middlewares/next-static.middle'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const controllers = resolve(__dirname, '../controllers')
@@ -28,20 +29,8 @@ export default defineService(async (shutdown) => {
   http.use(ResponseTimeMiddleware)
 
   // 中文注释：挂载 Next.js 到根路径 /。
-  const nextApp = await loadService(nextAppService)
-  http.use(async (ctx, next) => {
-    // 中文注释：保留现有 API 路由给 hile 控制器处理。
-    if (ctx.path.startsWith('/-')) {
-      await next()
-      return
-    }
-
-    // 中文注释：其余路由全部交给 Next（包含 / 与 /_next/*）。
-    ctx.status = 200
-    ctx.res.statusCode = 200
-    ctx.respond = false
-    await nextApp.handle(ctx.req, ctx.res)
-  })
+  const NextMiddleware = await createNextStaticMiddleware();
+  http.use(NextMiddleware);
 
   await http.load(controllers, {
     suffix: 'controller',

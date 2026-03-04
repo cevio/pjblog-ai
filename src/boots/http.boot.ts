@@ -1,11 +1,10 @@
-import { defineService, loadService } from '@hile/core'
+import { defineService } from '@hile/core'
 import { Http } from '@hile/http'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { CatchErrorMiddleware } from '../middlewares/error-catch.middle'
 import { ResponseTimeMiddleware } from '../middlewares/response-time.middle'
 import { parseEnvNumber, parseEnvKeys } from '../lib/env'
-import { createNextStaticMiddleware } from '../middlewares/next-static.middle'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const controllers = resolve(__dirname, '../controllers')
@@ -26,9 +25,6 @@ export default defineService(async (shutdown) => {
 
   // 全局请求耗时响应头。
   http.use(ResponseTimeMiddleware)
-
-  // 中文注释：挂载 Next.js 到根路径 /。
-  http.use(await createNextStaticMiddleware())
 
   await http.load(controllers, {
     suffix: 'controller',

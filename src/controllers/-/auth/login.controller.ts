@@ -8,6 +8,7 @@ import { buildCaptchaKey, CAPTCHA_ACTION } from "./captcha.controller";
 import { loadService } from "@hile/core";
 import { UserEntity } from "../../../entities/user.entity";
 import { generate } from "randomstring";
+import { ConfigsService } from "../../../services/configs.service";
 
 interface ILoginRequestBody {
   email: string;
@@ -97,11 +98,16 @@ export default defineController('POST', [RequestBodyMiddleware], async (ctx) => 
   await User.save(user);
 
   const token = generate(32);
-  await redis.setex(`${process.env.REDIS_PREFIX}:auth:token:${token}`, 60 * 60 * 24 * 30, user.id.toString());
+  const configs = await loadService(ConfigsService);
+  await redis.setex(
+    `${process.env.REDIS_PREFIX}:auth:token:${token}`,
+    configs.value.login_expire * 24 * 60 * 60,
+    user.id.toString()
+  );
   ctx.cookies.set('token', token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 60 * 60 * 24 * 30,
+    maxAge: configs.value.login_expire * 24 * 60 * 60,
     path: '/',
   });
 

@@ -8,6 +8,7 @@ import { HttpException } from "../../../lib/http-error";
 import { EMAIL_REGEXP } from "../../../lib/regexp";
 import { MailerService } from "../../../services/mailer.service";
 import { createRateLimitMiddleware } from "../../../middlewares/rate-limit.middle";
+import { ConfigsService } from "../../../services/configs.service";
 
 export const buildCaptchaKey = (ticket: string) => {
   return `${process.env.REDIS_PREFIX}:captcha:${ticket}`;
@@ -81,11 +82,12 @@ export default defineController('POST', [
 
   const redis = await loadService(IoredisService);
   const mailer = await loadService(MailerService);
+  const configs = await loadService(ConfigsService);
 
   // 发送邮件
-  await mailer.sendText(email, '验证码', `您的验证码是：${code}，请在5分钟内使用。`);
+  await mailer.sendText(email, '验证码', `您的验证码是：${code}，请在${configs.value.captcha_expire}分钟内使用。`);
   // 保存到 Redis
-  await redis.setex(ticket, 60 * 5, JSON.stringify({ email, action, code }));
+  await redis.setex(ticket, configs.value.captcha_expire * 60, JSON.stringify({ email, action, code }));
 
   return md5;
 })

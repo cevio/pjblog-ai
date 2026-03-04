@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 import { CatchErrorMiddleware } from '../middlewares/error-catch.middle'
 import { ResponseTimeMiddleware } from '../middlewares/response-time.middle'
 import { parseEnvNumber, parseEnvKeys } from '../lib/env'
-import { nextAppService } from '../services/next/next-app.service'
+import { nextAppService } from '../services/next-app.service'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const controllers = resolve(__dirname, '../controllers')
